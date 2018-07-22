@@ -2,7 +2,7 @@
 
 class Api::V1::NapsController < Api::V1::BaseController
   def index
-    respond_with Nap.all
+    respond_with Nap.all.order(:id).reverse
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::NapsController < Api::V1::BaseController
   end
 
   def destroy
-    respond_with Nap.destroy(params[:id])
+    respond_with :api, :v1, Nap.destroy(params[:id])
   end
 
   def update
